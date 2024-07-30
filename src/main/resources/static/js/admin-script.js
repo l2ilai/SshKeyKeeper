@@ -51,7 +51,6 @@ function loadUsers() {
 
             $('.btn-delete').click(function () {
                 let userId = $(this).data('id');
-                // let userServer = $('#ModalServerDelete').val();
                 $.ajax({
                     url: '/admin/users/' + userId,
                     type: 'GET',
@@ -76,33 +75,33 @@ function loadUsers() {
 loadUsers();
 
 // форма добавления нового пользователя
-$('#addUser').click(function (event) {
-    event.preventDefault();
-
-    let user = {};
-
-    $('#newUserForm').find('input').each(function () {
-        let attr = $(this).attr('name');
-        user[attr] = $(this).val();
-    });
-
-    user['roles'] = $('#newUserForm').find('select').val().map(role => ({role}));
-
-    $.ajax({
-        url: "./admin",
-        type: "POST",
-        data: JSON.stringify(user),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function () {
-            loadUsers();
-            window.location.href = '/admin';
-        },
-        error: function (xhr, status, error) {
-            console.error('Error adding new user:', status, error);
-        }
-    });
-});
+// $('#addUser').click(function (event) {
+//     event.preventDefault();
+//
+//     let user = {};
+//
+//     $('#newUserForm').find('input').each(function () {
+//         let attr = $(this).attr('name');
+//         user[attr] = $(this).val();
+//     });
+//
+//     user['roles'] = $('#newUserForm').find('select').val().map(role => ({role}));
+//
+//     $.ajax({
+//         url: "./admin",
+//         type: "POST",
+//         data: JSON.stringify(user),
+//         dataType: "json",
+//         contentType: "application/json; charset=utf-8",
+//         success: function () {
+//             loadUsers();
+//             window.location.href = '/admin';
+//         },
+//         error: function (xhr, status, error) {
+//             console.error('Error adding new user:', status, error);
+//         }
+//     });
+// });
 
 // обработчик кнопки сохранения редактирования пользователя
 $('#saveEditUser').click(function (event) {
@@ -135,6 +134,7 @@ $('#saveEditUser').click(function (event) {
 $('#confirmDeleteUser').click(function () {
     let userId = $('#ModalIdDelete').val();
     // $('#ModalServerDelete').val(user.servers.map(s => s.name));
+    //TODO выбор сервера
     let userServer = '194.87.237.197';
     $.ajax({
         url: '/admin/users/' + userId + '/' + userServer,
@@ -174,12 +174,12 @@ function currentUser() {
 
 function TableOfCurrentUser(user) {
     let roles = user.roles.map(role => role.role).join(', ');
-    // let servers = user.servers.map(server => server.ip).join('\n');
+    let servers = user.servers.map(server => server.ip).join('\n');
     let userRow = `
                 <tr>
                     <td>${user.id}</td>
                     <td>${user.name}</td>
-                    <td>127.0.0.1</td>
+                    <td>${servers}</td>
                     <td>${roles}</td>
                 </tr>
             `;
