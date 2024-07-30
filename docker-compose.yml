@@ -20,7 +20,7 @@ services:
     environment:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
-      SSH_IP: ${SSH_IP}
+      SSH_IP: ${SSH_IP:-94.87.237.197}
       SSH_USER: ${SSH_USER}
       BOT_TOKEN: ${BOT_TOKEN}
       BOT_NAME: ${BOT_NAME}
