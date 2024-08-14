@@ -69,4 +69,5 @@ jobs:
             
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
             sudo docker cp id_rsa tkk-bot-app:/home/id_rsa
+            
             sudo rm id_rsa
