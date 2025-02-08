@@ -3,7 +3,6 @@ server:
 owners:
   namesOwnerTelegramBot:
     - ilai_s
-    - Marandyuk_Anatolii
   pass: ${WEB_PASS:admin}
 file:
   pathDownload: ${PATH_DOWNLOAD:/}
@@ -12,7 +11,7 @@ bot:
   name: ${BOT_NAME}
   token: ${BOT_TOKEN}
 ssh-server:
-  ip: 194.87.237.176
+  ip: 111.111.11.11
   port: ${SSH_PORT:22}
   user: ${SSH_USER}
   pathToPrivateKey: ${SSH_PRIVATE_KEY_PATH:/home/id_rsa}
